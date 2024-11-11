@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/05 12:27:58 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:21:37 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ char	*get_next_line(int fd)
 	right_buffer = ft_read(fd, right_buffer);
 	if (!right_buffer)
 		return (NULL);
+	
 }
