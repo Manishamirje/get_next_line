@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:28:00 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/11 11:31:23 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/11/11 11:55:55 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_memcpy = (str, s1, s1_len);
 	ft_memcpy = (str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
+	free(s1);
 	return (str);
 }
