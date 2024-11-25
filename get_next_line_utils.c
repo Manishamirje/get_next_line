@@ -6,11 +6,11 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:28:00 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/11 11:55:55 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/11/11 15:19:54 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "get_next_line.h"
 #include <string.h>
 
 char	*ft_strchr(char *s, int c)
@@ -60,7 +60,7 @@ size_t	ft_len(char *s)
 	return (i);
 }
 
-void	*ft_memcpy(void dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*dstptr;
 
@@ -90,8 +90,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = (char *)malloc(sizeof(char) * ((s1_len + s2_len) + 1));
 	if (!str)
 		return (NULL);
-	ft_memcpy = (str, s1, s1_len);
-	ft_memcpy = (str + s1_len, s2, s2_len);
+	ft_memcpy(str, s1, s1_len);
+	ft_memcpy(str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
 	free(s1);
 	return (str);

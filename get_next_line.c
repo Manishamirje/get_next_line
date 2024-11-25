@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/11 15:16:38 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/11/11 15:33:11 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ static char	*ft_read(int fd, char *r_buffer)
 		}
 		buffer[r_len] = '\0';
 		r_buffer = ft_strjoin(r_buffer, buffer);
-		free(buffer);
-		return (r_buffer);
+		if (0 == r_len)
+			break ;
 	}
+	free(buffer);
+	return (r_buffer);
 }
 
 char	*get_next_line(int fd)
@@ -105,7 +107,7 @@ char	*get_next_line(int fd)
 	return (left_buffer);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*next_line;
@@ -124,4 +126,4 @@ char	*get_next_line(int fd)
 	}
 	close(fd);
 	return (0);
-}*/
+}
