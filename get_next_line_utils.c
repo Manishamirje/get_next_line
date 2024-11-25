@@ -77,9 +77,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char			*str;
-	unsigned int	s1_len;
-	unsigned int	s2_len;
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
 
 	if (!s1)
 		s1 = (char *)ft_calloc(1, sizeof(char));
@@ -87,7 +87,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	s1_len = ft_len(s1);
 	s2_len = ft_len(s2);
-	str = (char *)malloc(sizeof(char) * ((s1_len + s2_len) + 1));
+	str = (char *)ft_calloc(((s1_len + s2_len) + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_memcpy(str, s1, s1_len);
