@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/25 16:14:25 by mmirje           ###   ########.fr       */
+/*   Created: 2024/05/28 10:47:03 by mmirje            #+#    #+#             */
+/*   Updated: 2024/05/28 11:27:35 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ static char	*ft_right_buffer(char *r_buffer)
 	char	*buffer;
 
 	i = 0;
+	j = 0;
 	if (!r_buffer)
 		return (free (r_buffer), NULL);
 	while (r_buffer[i] && r_buffer[i] != '\n')
 		i++;
 	if (!r_buffer[i])
-		return (free (r_buffer), NULL);
+	{
+		free(r_buffer);
+		return (NULL);
+	}
 	buffer = (char *)ft_calloc((ft_len(r_buffer) - i) + 1, sizeof(char));
 	if (!buffer)
-		return (free (r_buffer), NULL);
-	j = 0;
+		return (free(r_buffer), NULL);
 	while (r_buffer[i])
 		buffer[j++] = r_buffer[++i];
 	buffer[j] = '\0';
 	if (!*buffer)
 		return (free (buffer), free (r_buffer), NULL);
-	free (r_buffer);
+	free(r_buffer);
 	return (buffer);
 }
 
@@ -88,7 +91,7 @@ static char	*ft_read(int fd, char *r_buffer)
 		if (0 == r_len)
 			break ;
 	}
-	free(buffer);
+	free (buffer);
 	return (r_buffer);
 }
 
@@ -107,7 +110,7 @@ char	*get_next_line(int fd)
 	return (left_buffer);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd;
 	char	*next_line;
@@ -126,4 +129,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}
+}*/
