@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/25 16:14:25 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/11/28 16:42:22 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 	return (left_buffer);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd;
 	char	*next_line;
@@ -127,3 +127,4 @@ int	main(void)
 	close(fd);
 	return (0);
 }
+*/
