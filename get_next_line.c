@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/12/03 11:55:55 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 12:54:18 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,33 @@ static char	*ft_right_buffer(char *r_buffer)
 	return (buffer);
 }
 
+static char	*ft_allocate(char *r_buffer)
+{
+	size_t	i;
+	char	*buff;
+
+	i = 0;
+	while (r_buffer[i] && r_buffer[i] != '\n')
+		i++;
+	if (r_buffer[i] == '\n')
+		i++;
+	buff = (char *)ft_calloc(i + 1, sizeof(char));
+	if (!buff)
+		return (NULL);
+	return (buff);
+}
+
 static char	*ft_left_buffer(char *r_buffer)
 {
 	size_t	i;
 	char	*buff;
 
 	i = 0;
-	if (!r_buffer[i])
+	if (!r_buffer || !r_buffer[i])
 		return (NULL);
-	while (r_buffer[i] && r_buffer[i] != '\n')
-		i++;
-	buff = (char *)ft_calloc(i + 2, sizeof(char));
+	buff = ft_allocate(r_buffer);
 	if (!buff)
 		return (NULL);
-	i = 0;
 	while (r_buffer[i] && r_buffer[i] != '\n')
 	{
 		buff[i] = r_buffer[i];
