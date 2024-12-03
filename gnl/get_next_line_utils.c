@@ -6,12 +6,12 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:52:20 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/11 15:19:04 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 12:28:25 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "string.h"
+#include <string.h>
 
 char	*ft_strchr(char *s, int c)
 {
@@ -84,14 +84,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	s2_len;
 
 	if (!s1)
-		s1 = (char *)ft_calloc(1, sizeof(char));
+		s1 = (char *)ft_calloc(2, sizeof(char));
 	if (!s1 || !s2)
 		return (NULL);
 	s1_len = ft_len(s1);
 	s2_len = ft_len(s2);
 	res_string = (char *)ft_calloc((s1_len + s2_len + 1), sizeof(char));
 	if (!res_string)
-		return (NULL);
+		return (free (s1), NULL);
 	ft_memcpy(res_string, s1, s1_len);
 	ft_memcpy(res_string + s1_len, s2, s2_len);
 	res_string[s1_len + s2_len] = '\0';

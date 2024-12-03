@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:28:00 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/25 16:10:22 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 12:06:07 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	s2_len = ft_len(s2);
 	str = (char *)ft_calloc(((s1_len + s2_len) + 1), sizeof(char));
 	if (!str)
-		return (NULL);
+		return (free (s1), NULL);
 	ft_memcpy(str, s1, s1_len);
 	ft_memcpy(str + s1_len, s2, s2_len);
 	str[s1_len + s2_len] = '\0';
