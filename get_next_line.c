@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/12/03 15:30:45 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 16:13:14 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ char	*get_next_line(int fd)
 	char	*next_line;
 	int		count;
 
+	void	leaks()
+	{
+	system("leaks a.out");
+	}
+	atexit(leaks);
 	count = 1;
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
@@ -136,6 +141,8 @@ char	*get_next_line(int fd)
 	while (count < 20)
 	{
 		next_line = get_next_line(fd);
+		if (next_line == NULL)
+			return (0);
 		printf("next_line:%s", next_line);
 		free(next_line);
 		count++;
