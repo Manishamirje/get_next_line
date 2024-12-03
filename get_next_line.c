@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:57 by mmirje            #+#    #+#             */
-/*   Updated: 2024/12/03 12:54:18 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 15:30:45 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,19 @@ static char	*ft_right_buffer(char *r_buffer)
 	return (buffer);
 }
 
-static char	*ft_allocate(char *r_buffer)
+static char	*ft_allocate(char **buff, char *r_buffer)
 {
 	size_t	i;
-	char	*buff;
 
 	i = 0;
 	while (r_buffer[i] && r_buffer[i] != '\n')
 		i++;
 	if (r_buffer[i] == '\n')
 		i++;
-	buff = (char *)ft_calloc(i + 1, sizeof(char));
-	if (!buff)
+	*buff = (char *)ft_calloc(i + 1, sizeof(char));
+	if (!*buff)
 		return (NULL);
-	return (buff);
+	return (*buff);
 }
 
 static char	*ft_left_buffer(char *r_buffer)
@@ -62,9 +61,9 @@ static char	*ft_left_buffer(char *r_buffer)
 	i = 0;
 	if (!r_buffer || !r_buffer[i])
 		return (NULL);
-	buff = ft_allocate(r_buffer);
-	if (!buff)
-		return (NULL);
+	buff = NULL;
+	if (!ft_allocate(&buff, r_buffer))
+		return (free(buff), NULL);
 	while (r_buffer[i] && r_buffer[i] != '\n')
 	{
 		buff[i] = r_buffer[i];
@@ -84,20 +83,22 @@ static char	*ft_read(int fd, char *r_buffer)
 	ssize_t	r_len;
 	char	*buffer;
 
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
+	{
+		if (r_buffer)
+			free (r_buffer);
 		return (NULL);
+	}
 	while (!ft_strchr(r_buffer, '\n'))
 	{
 		r_len = read(fd, buffer, BUFFER_SIZE);
 		if (r_len == -1)
-		{
-			free(buffer);
-			free(r_buffer);
-			return (NULL);
-		}
+			return (free (buffer), free (r_buffer), NULL);
 		buffer[r_len] = '\0';
 		r_buffer = ft_strjoin(r_buffer, buffer);
+		if (!r_buffer)
+			return (NULL);
 		if (0 == r_len)
 			break ;
 	}
@@ -116,6 +117,8 @@ char	*get_next_line(int fd)
 	if (!right_buffer)
 		return (NULL);
 	left_buffer = ft_left_buffer(right_buffer);
+	if (!left_buffer)
+		return (free(right_buffer), right_buffer = NULL, NULL);
 	right_buffer = ft_right_buffer(right_buffer);
 	return (left_buffer);
 }

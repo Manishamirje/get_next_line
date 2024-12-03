@@ -6,7 +6,7 @@
 /*   By: mmirje <mmirje@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:27:53 by mmirje            #+#    #+#             */
-/*   Updated: 2024/11/11 15:21:51 by mmirje           ###   ########.fr       */
+/*   Updated: 2024/12/03 15:18:06 by mmirje           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
